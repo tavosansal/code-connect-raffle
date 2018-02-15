@@ -9,7 +9,7 @@ class App extends Component {
     this.state = {players: 1};
 
     this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.playGame = this.playGame.bind(this);
   }
 
   handleChange(event) {
@@ -22,7 +22,10 @@ class App extends Component {
       players: parsedValue,
     });
   }
-  
+
+  playGame() {
+    alert('PLAY');
+  }
 
   render() {
 
@@ -40,7 +43,7 @@ class App extends Component {
           </label>
         </p>
 
-        <button disabled={!this.state.players}>LET'S GO!</button>
+        <button disabled={!this.state.players} onClick={this.playGame}>LET'S GO!</button>
         
       </div>
     );
