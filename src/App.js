@@ -24,7 +24,20 @@ class App extends Component {
   }
 
   playGame() {
-    alert('PLAY');
+    if (this.state.players > raffleOptions.length) {
+      alert(`Only ${raffleOptions.length} are available`);
+    }
+
+    const optionsToUse = raffleOptions.slice(0, this.state.players);
+
+    const winner =optionsToUse[Math.floor(Math.random()*optionsToUse.length)];
+
+    this.setState({
+      winner,
+    });
+
+    const dialog = document.getElementById('winner-dialog');
+    dialog.show();
   }
 
   render() {
@@ -35,16 +48,21 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to Code Connect Raffle</h1>
         </header>
-        <h2>Are you ready to win stuff????</h2>
+        <h2>Are you ready to win stuff?</h2>
         <p className="App-intro">
           <label>
-            How many players? 
+            How many players? &nbsp;
             <input type="number" name="players" value={this.state.players} onChange={this.handleChange} />
           </label>
         </p>
 
         <button disabled={!this.state.players} onClick={this.playGame}>LET'S GO!</button>
         
+        <dialog id="winner-dialog">  
+          <h2>{this.state.winner}</h2>
+          <p>YOU ARE THE WINNER!</p>
+          <button onClick>Play again</button>
+        </dialog> 
       </div>
     );
   }
