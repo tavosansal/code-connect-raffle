@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      players: 1,
+      players: 50,
       isPlaying: false,
       winner: null,
     };
@@ -48,7 +48,7 @@ class App extends Component {
       dialog.showModal();
 
       this.setState({ isPlaying: false });
-    }, 8000)
+    }, 5000)
   }
 
   reset() {
