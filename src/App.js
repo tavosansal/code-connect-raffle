@@ -30,15 +30,13 @@ class App extends Component {
   }
 
   playGame() {
-    this.setState({
-      isPlaying: true,
-    });
     if (this.state.players > raffleOptions.length) {
       alert(`Only ${raffleOptions.length} are available`);
     }
-
+    this.setState({
+      isPlaying: true,
+    });
     setTimeout(() => {
-      debugger;
       const optionsToUse = raffleOptions.slice(0, this.state.players);
       const winner =optionsToUse[Math.floor(Math.random()*optionsToUse.length)];
 
@@ -50,7 +48,7 @@ class App extends Component {
       dialog.showModal();
 
       this.setState({ isPlaying: false });
-    }, 5000)
+    }, 8000)
   }
 
   reset() {
@@ -67,7 +65,7 @@ class App extends Component {
     const isPlaying = this.state.isPlaying;
     let isPlayingRender = null;
     if (isPlaying) {
-      isPlayingRender = <Spinner name="double-bounce" className="App"/>;
+      isPlayingRender = <div className="flex-center"><Spinner name="double-bounce" /></div>;
     } else {
       isPlayingRender = <button disabled={!this.state.players} onClick={this.playGame}>LET'S GO!</button>;
     }
